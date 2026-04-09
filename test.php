@@ -1,4 +1,4 @@
-<?
+<?php
 require_once "components/header.php"; // MOTSVARAR import
 
 // tänk inte för mycket på detta
