@@ -1,20 +1,54 @@
 <?
+require_once "components/header.php"; // MOTSVARAR import
+
 // tänk inte för mycket på detta
 $name = $_GET['name'] ?? '';
 $age = $_GET['age'] ?? '';
 
 //$dagar = array("Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag");
 $dagar = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
+function square($number) {
+  return $number * $number;
+}
+
+
+class Person {
+    public $name;
+    public $age;
+
+    public function __construct($name, $age) {
+        $this->name = $name;
+        $this->age = $age;
+    }
+
+    
+}
+
+// På riktigt = vi hämtar personer från en databas
+$person = new Person("Stefan", 11);
+$person->age = 54;
+$person2 = new Person("Anna", 13);
+$person3 = new Person("Oliver", 17);
+
+$persons = [$person, $person2, $person3];
+// $persons kommer från databasen
+
+
+
+
+
+
+?>
+<?php headerComponent(); ?>
+
 <body>
+    <ul>
+        <li><?php echo $person->name . " är " . $person->age . " år gammal"; ?></li>
+        <li><?php echo $person2->name . " är " . $person2->age . " år gammal"; ?></li>
+        <li><?php echo $person3->name . " är " . $person3->age . " år gammal"; ?></li>
+    </ul>
     <h1><?php echo $name; ?></h1>
 
     <h2>Du är <?php echo $age; ?> år gammal</h2>
@@ -80,7 +114,66 @@ $dagar = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Sönda
         }
         ?>
     </select>
+    <hr>
+    <?php
+    $number = 12;
+    echo $number + 10; // 22
+    echo "<hr>";
 
+
+    $number = "12";
+    echo $number + "10"; // 22
+    echo "<hr>";
+    echo $number + "10" . "12"; // 2212
+
+    $first = "Stefan";
+    $last = "Svensson";
+    echo $first . " " . $last; // Stefan Svensson
+
+
+    //  $person->isYoung() ? "Yes" : "No"; 
+    $age = 12;
+    $m = "";
+    
+    if($age >12) {
+       $m = "Du är äldre än 12 år";
+    } else {
+        $m = "Du är barn";
+    }
+
+    $m = $age > 12 ? "Du är äldre än 12 år" : "Du är barn";
+
+
+    ?>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Is Young?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($persons as $person){
+                $className = "";
+                if($person->age > 53) {
+                    $className = "reallyold";
+                }
+                $isYoung = "No";
+                if ($person->age <= 53) {
+                    $isYoung = "Yes";
+                }
+                 ?>
+                <tr>
+                    <td class="<?php echo $className; ?>"><?php echo $person->name; ?></td>
+                    <td><?php echo $person->age; ?></td>
+                    <!-- <td><?php echo $person->age <= 53 ? "Yes" : "No"; ?></td>-->
+                    <td><?php echo $isYoung; ?></td> 
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
 
 
 </body>
