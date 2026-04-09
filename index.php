@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="form.php">Form</a>
     <a href="lab1.php">Lab 1</a>
     <a href="lab2.php">Lab 2</a>
 </body>
