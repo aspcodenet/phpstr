@@ -10,17 +10,14 @@
 // eller "spara" data. Vi kollar vilken mode vi är i genom att kolla om det finns data i $_GET
 
 
-if (isset($_GET['name']) && isset($_GET['age']) && isset($_GET['team'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {// TRYCKT PÅ KNAPPEN
     // spara data
-    $name = $_GET['name'];
-    $age = $_GET['age'];
-    $team = $_GET['team'];
+    $name = $_POST['name'];
+    $age = $_POST['age'];
+    $team = $_POST['team'];
 
     // här kan du spara data i en databas eller i en fil
     // för att hålla det enkelt, så skriver vi ut datan på skärmen
-    echo "Name: " . $name . "<br>";
-    echo "Age: " . $age . "<br>";
-    echo "Team: " . $team . "<br>";
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +28,7 @@ if (isset($_GET['name']) && isset($_GET['age']) && isset($_GET['team'])) {
     <title>Document</title>
 </head>
 <body>
-    <form method="GET" action="form.php">
+    <form method="POST§" action="formPost.php">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name">
         <label for="age">Age:</label>
